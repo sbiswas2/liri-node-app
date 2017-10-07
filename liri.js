@@ -6,12 +6,12 @@ var input = '';
 var request = require('request');
 var fs = require('fs');
 var twitter = require('twitter');
-var dataKeys = require('./keys.js');
 var spotify = require('node-spotify-api');
+var keys = require('./keys.js');
 
 // my-tweets
 function myTweets() {
-	var client = new twitter(dataKeys.twitterKeys);
+	var client = new twitter(keys.twitterKeys);
 	var parameters = { screen_name: 'FakeSetu', count: 20 };
 	client.get('statuses/user_timeline', parameters, function(error, tweets, response) {
 		if (error) {
@@ -26,10 +26,22 @@ function myTweets() {
 	});
 };
 
-
 // spotify-this-song
+
 // movie-this
+
 // do-what-it-says
 
 // switch case for functions
-myTweets();
+switch (command) {
+	case 'my-tweets':
+		myTweets();
+		break;
+	case 'spotify-this-song':
+
+	case 'movie-this':
+
+	case 'do-what-it-says':
+}
+
+
