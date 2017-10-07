@@ -6,15 +6,17 @@ var input = '';
 var request = require('request');
 var fs = require('fs');
 var twitter = require('twitter');
-var keys = require('./keys.js');
+var dataKeys = require('./keys.js');
 var spotify = require('node-spotify-api');
 
 // my-tweets
 function myTweets() {
-	var client = new twitter(keys.twitterKeys);
+	var client = new twitter(dataKeys.twitterKeys);
 	var parameters = { screen_name: 'FakeSetu', count: 20 };
 	client.get('statuses/user_timeline', parameters, function(error, tweets, response) {
-		if(error) return;
+		if (error) {
+			console.log(error);
+		}
 
 		for (var i = 0; i < tweets.length; i++) {
 			var tweetText = tweets[i].text;
