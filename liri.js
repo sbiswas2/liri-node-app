@@ -87,6 +87,19 @@ function findMovie() {
 };
 
 // do-what-it-says
+function readText () {
+	fs.readFile("random.txt", "utf8", function(error, data) {
+  	if (error) {
+  		console.log(error);
+  		return;
+  	}
+
+  	var dataArr = data.split(",");
+  	input = dataArr[1];
+  	getSpotify();
+
+	});
+};
 
 // switch case for functions
 switch (command) {
@@ -100,6 +113,8 @@ switch (command) {
 		findMovie();
 		break;
 	case 'do-what-it-says':
+		readText();
+		break;
 };
 
 
