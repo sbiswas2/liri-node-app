@@ -116,5 +116,3 @@ switch (command) {
 		readText();
 		break;
 };
-
-
