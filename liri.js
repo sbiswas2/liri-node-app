@@ -28,7 +28,7 @@ function myTweets() {
 			return;
 		};
 
-		for (var i = 0; i < tweets.length; i++) {
+		for (var i = 0; i < 20; i++) {
 			var tweetText = tweets[i].text;
 			var tweetCreate = tweets[i].created_at;
 			console.log(tweetText + ' created on ' + tweetCreate);
