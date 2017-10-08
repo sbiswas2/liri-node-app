@@ -21,14 +21,14 @@ function myTweets() {
 		access_token_secret: 'C8U58ZJ4MXcYoCzGdR9XFSO10a49mFODDyNioIRKxLmPH',
 	});
 
-	var params = { screen_name: 'FakeSetu', count: 20 };
+	var params = { screen_name: 'FakeSetu' };
 	client.get('statuses/user_timeline', params, function(error, tweets, response) {
 		if (error) {
 			console.log(error);
 			return;
 		};
 
-		for (var i = 1; i < tweets.length; i++) {
+		for (var i = 0; i < tweets.length; i++) {
 			var tweetText = tweets[i].text;
 			var tweetCreate = tweets[i].created_at;
 			console.log(tweetText + ' created on ' + tweetCreate);
