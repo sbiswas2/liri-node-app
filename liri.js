@@ -5,28 +5,58 @@ var input = '';
 	}
 var request = require('request');
 var fs = require('fs');
-var twitter = require('twitter');
-var spotify = require('node-spotify-api');
 var keys = require('./keys.js');
+var Twitter = require('twitter');
+var Spotify = require('node-spotify-api');
+
 
 // my-tweets
 function myTweets() {
-	var client = new twitter(keys.twitterKeys);
-	var parameters = { screen_name: 'FakeSetu', count: 20 };
-	client.get('statuses/user_timeline', parameters, function(error, tweets, response) {
+	// having problem with this
+	// var client = new Twitter(keys.twitterKeys);
+	var client = new Twitter({
+		consumer_key: 'mL6CubL42S1n6GMnGgCM8aHIY',
+		consumer_secret: '4h9sPc72fNzG12bvf1qUsySe3Pnxc5jGrwsPTHrUmVWRjPUcZH',
+		access_token_key: '916754027702050817-Yi3wBu5ujDJHTCL7bIqSXKSRUGX4ZCr',
+		access_token_secret: 'C8U58ZJ4MXcYoCzGdR9XFSO10a49mFODDyNioIRKxLmPH',
+	});
+
+	var params = { screen_name: 'FakeSetu', count: 20 };
+	client.get('statuses/user_timeline', params, function(error, tweets, response) {
 		if (error) {
 			console.log(error);
+			return;
 		}
 
-		for (var i = 0; i < tweets.length; i++) {
+		for (var i = 1; i < tweets.length; i++) {
 			var tweetText = tweets[i].text;
 			var tweetCreate = tweets[i].created_at;
-			console.log(tweetText + 'created on' + tweetCreate);
+			console.log(tweetText + ' created on ' + tweetCreate);
 		}
 	});
 };
 
 // spotify-this-song
+function getSpotify() {
+	//  having problem with this
+	//  var spotify = new Spotify(keys.spotifyKeys);
+	var spotify = new Spotify({
+		id: 'af606e4bbe09447db7752de7d9902a62',
+		secret: 'c4496d7453d94ef99894c9868428b73d'
+	});
+
+	spotify.search({ type: 'track', query: input }, function(error, data) {
+		if (error) {
+			console.log(error);
+			return;
+		}
+
+		console.log("Artist(s): " + data.tracks.items[0].artists[0].name);
+		console.log("Song Name: " + data.tracks.items[0].name);
+		console.log("Preview Link: " + data.tracks.items[0].preview_url);
+		console.log("Album: " + data.tracks.items[0].album.name);
+	});
+};
 
 // movie-this
 
@@ -38,7 +68,8 @@ switch (command) {
 		myTweets();
 		break;
 	case 'spotify-this-song':
-
+		getSpotify();
+		break;
 	case 'movie-this':
 
 	case 'do-what-it-says':
