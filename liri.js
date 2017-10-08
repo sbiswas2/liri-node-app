@@ -103,4 +103,6 @@ switch (command) {
 	case 'do-what-it-says':
 		readText();
 		break;
+	default:
+		console.log("Please type a proper command");
 };
