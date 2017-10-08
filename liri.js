@@ -62,7 +62,7 @@ function findMovie() {
 		console.log(error);
 		return;
 	};
-
+	
     console.log("Title: " + JSON.parse(body).Title);
     console.log("Year: " + JSON.parse(body).Year);
     console.log("IMDb Rating: " + JSON.parse(body).imdbRating);
