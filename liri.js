@@ -25,7 +25,7 @@ function myTweets() {
 			var tweetText = tweets[i].text;
 			var tweetCreate = tweets[i].created_at;
 			console.log(tweetText + ' created on ' + tweetCreate);
-		}
+		};
 	});
 };
 
@@ -83,26 +83,30 @@ function readText () {
   	}
 
   	var dataArr = data.split(",");
+  	command = dataArr[0];
   	input = dataArr[1];
-  	getSpotify();
-
+  	switchCase();
 	});
 };
 
-// switch case for functions
-switch (command) {
-	case 'my-tweets':
+// switch case
+function switchCase() {
+	switch (command) {
+		case 'my-tweets':
 		myTweets();
 		break;
-	case 'spotify-this-song':
+		case 'spotify-this-song':
 		getSpotify();
 		break;
-	case 'movie-this':
+		case 'movie-this':
 		findMovie();
 		break;
-	case 'do-what-it-says':
+		case 'do-what-it-says':
 		readText();
 		break;
-	default:
+		default:
 		console.log("Please type a proper command");
+	};
 };
+
+switchCase();
